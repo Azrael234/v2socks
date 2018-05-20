@@ -12,7 +12,3 @@
 ## 注意事项
 * 如果要使用MysqlBandReset，你必须在MysqlBandReset.php中配置数据库信息
 * 需要更多支持，请开issue或者给我发邮件
-
-## 如果感觉插件好用，嘘寒问暖不如打笔巨款～
-* Paypal捐赠 zzm317@outlook.com
-* 支付宝捐赠 admin@loli.ren
