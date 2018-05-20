@@ -8,6 +8,7 @@
 * 公告信息
 * VMESS二维码
 * 随机UUID
+* tls,混淆已支持
 
 ## 注意事项
 * 如果要使用MysqlBandReset，你必须在MysqlBandReset.php中配置数据库信息

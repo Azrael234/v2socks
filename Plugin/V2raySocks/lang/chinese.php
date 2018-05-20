@@ -51,7 +51,7 @@ $_VLANG['announcements'] = "公告信息";
 $_VLANG['resetbandwidth_description'] = "是否需要重置流量";
 $_VLANG['bandwidth_description'] = "单位MB 自定义流量套餐请勿填写";
 $_VLANG['start_port_description'] = "如果数据库有记录此项无效";
-$_VLANG['routelist_description'] = "格式 xxx|服务器地址|端口|加密方式 一行一个";
+$_VLANG['routelist_description'] = "格式 xxx|服务器地址|端口|加密方式|混淆(不支持留空)|tls(不支持留空) 一行一个";
 $_VLANG['announcements_description'] = "输入需要公告的信息(换行使用 < /br >)";
 
 //其他

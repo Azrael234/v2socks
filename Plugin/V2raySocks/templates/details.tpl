@@ -195,6 +195,8 @@ background-color: rgba(0, 0, 0, .3);
                                 <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('address')}</th>
                                 <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('method')}</th>
                                 <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('port')}</th>
+                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('obfuscation')}</th>
+                                <th class="hidden-xs hidden-sm">TLS</th>
                                 <th>{V2raySocks_get_lang('action')}</th>
                             </tr>
                         </thead>
@@ -206,12 +208,14 @@ background-color: rgba(0, 0, 0, .3);
                                 <td class="hidden-xs hidden-sm">{$node[1]}</td>
                                 <td class="hidden-xs hidden-sm">{$node[3]}</td>
                                 <td class="hidden-xs hidden-sm">{$node[2]}</td>
+                                <td class="hidden-xs hidden-sm">{if ($node[4])}{$node[4]}{else}X{/if}</td>
+                                <td class="hidden-xs hidden-sm">{if ($node[4])}√{else}X{/if}</td>
                                 <td data-hook="action">
-                                        <button name="qrcode" class="btn btn-primary btn-xs" data-type="vmess" data-params="{$node[4]|unescape:"htmlall"}">
+                                        <button name="qrcode" class="btn btn-primary btn-xs" data-type="vmess" data-params="{$node[6]|unescape:"htmlall"}">
                                             <i class="fa fa-qrcode"></i>
                                             {V2raySocks_get_lang('show_QRcode')}
                                         </button>
-                                        <button name="url" class="btn btn-primary btn-xs" data-params="{$node[4]|unescape:"htmlall"}">
+                                        <button name="url" class="btn btn-primary btn-xs" data-params="{$node[6]|unescape:"htmlall"}">
                                             <i class="fa fa-qrcode"></i>
                                             {V2raySocks_get_lang('show_URL')}
                                         </button>
@@ -223,63 +227,7 @@ background-color: rgba(0, 0, 0, .3);
                     </table>
                 </div>
             </section>
-            
-            {if ($usingcards)}
-                <section class="panel">
-                    <header class="panel-heading">
-                        {V2raySocks_get_lang('card_info')}
-                    </header>
-                    <div class="panel-body table-container">
-                        <table class="table general-table">
-                            <thead>
-                                <tr>
-                                    <th>{V2raySocks_get_lang('bandwidth')}</th>
-                                    <th>{V2raySocks_get_lang('duedate')}</th>
-                                    <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('card_number')}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {foreach $usingcards as $usedcard}
-                                <tr>
-                                    <td>{$usedcard['traffic']}</td>
-                                    <td>{$usedcard['duedate']}</td>
-                                    <td class="hidden-xs hidden-sm">{$usedcard['card']}</td>
-                                </tr>
-                            {/foreach}    
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            {/if}
-            
-            {if ($usedcards)}
-                <section class="panel">
-                    <header class="panel-heading">
-                        {V2raySocks_get_lang('used_card_info')}
-                    </header>
-                    <div class="panel-body table-container">
-                        <table class="table general-table">
-                            <thead>
-                                <tr>
-                                    <th>{V2raySocks_get_lang('bandwidth')}</th>
-                                    <th>{V2raySocks_get_lang('duedate')}</th>
-                                    <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('card_number')}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {foreach $usedcards as $usedcard}
-                                <tr>
-                                    <td>{$usedcard['traffic']}</td>
-                                    <td>{$usedcard['duedate']}</td>
-                                    <td class="hidden-xs hidden-sm">{$usedcard['card']}</td>
-                                </tr>
-                            {/foreach}    
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            {/if}
-			
+
 			{if ($script)}
 			<section class="panel">
                 <header class="panel-heading">
