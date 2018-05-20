@@ -12,3 +12,6 @@
 ## 注意事项
 * 如果要使用MysqlBandReset，你必须在MysqlBandReset.php中配置数据库信息
 * 需要更多支持，请开issue或者给我发邮件
+
+## 捐赠
+ETH钱包 0xaD8ABb15e4B8B58f5FbEE9CAb42096c1d640C234
