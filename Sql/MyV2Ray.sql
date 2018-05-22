@@ -1,15 +1,31 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.15.6
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: 2018-05-22 14:14:35
+-- 服务器版本： 5.5.56-log
+-- PHP Version: 7.0.19
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-CREATE DATABASE IF NOT EXISTS `MyV2Ray` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `MyV2Ray`;
+--
+-- Database: `MyV2Ray`
+--
 
-DROP TABLE IF EXISTS `user`;
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `user`
+--
+
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL,
   `uuid` varchar(36) NOT NULL,
@@ -24,7 +40,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `sid` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `user_usage`;
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `user_usage`
+--
+
 CREATE TABLE IF NOT EXISTS `user_usage` (
   `sid` int(11) NOT NULL,
   `date` int(11) NOT NULL,
@@ -34,11 +55,23 @@ CREATE TABLE IF NOT EXISTS `user_usage` (
   `tdownload` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
+--
+-- Indexes for dumped tables
+--
 
+--
+-- Indexes for table `user`
+--
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
 
+--
+-- AUTO_INCREMENT for table `user`
+--
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
