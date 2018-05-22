@@ -7,9 +7,9 @@ function V2raySocks_multi_language_support(){
 		$language = $GLOBALS['CONFIG']['Language'];
 	}
 	if(isset($_SESSION['adminid'])){
-		$language = _getUserLanguage('tbladmins', 'adminid');
+		$language = V2raySocks_getUserLanguage('tbladmins', 'adminid');
 	}elseif( $_SESSION['uid'] ){
-		$language = _getUserLanguage('tblclients', 'uid');
+		$language = V2raySocks_getUserLanguage('tblclients', 'uid');
 	}
 	if(!$language){
 		$language = Default_Lang;
