@@ -317,7 +317,29 @@ function V2raySocks_ClientArea($params) {
                 if($nodee[5]){
                     $str .= "&tls=1";
                 }
-                $nodee[6] = $str;
+                $atr1 = array(
+                            "add" => $nodee[1],
+                            "aid" => 64,
+                            "host"=> "",
+                            "id"  => $usage['uuid'],
+                            "net" => "tcp",
+                            "path"=> "",
+                            "port"=> $nodee[2],
+                            "ps"  => $nodee[0],
+                            "v"   => 2
+                        );
+                if($nodee[4]){
+                    $atr1['type'] = $nodee[4];
+                }else{
+                    $atr1['type'] = "none";
+                }
+                if($nodee[5]){
+                    $atr1['tls'] = $nodee[5];
+                }else{
+                    $atr1['tls'] = "";
+                }
+                $nodee[6]['ios'] = $str;
+                $nodee[6]['win'] = "vmess://".base64_encode(json_encode($atr1));
                 $results[$x] = $nodee;
                 $x++;
             }

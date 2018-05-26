@@ -87,13 +87,21 @@ function V2RaySocks_update_network($products,$server,$whproduct,$oldproducts){
         $ssacc = mysqli_fetch_array($sql->query($sqlq),MYSQLI_ASSOC);
         $uasql = "SELECT * FROM `user_usage` WHERE sid = " . $pro['id'] ." ORDER BY `date` LIMIT 1";
         $usagee = mysqli_fetch_array($sql->query($uasql),MYSQLI_ASSOC);
+        $writeable = false;
         if(empty($usagee)){
+            $writeable = true;
         	$dataa = $ssacc['u'].",".$ssacc['d'].",".$ssacc['u'].",".$ssacc['d'].",".time().",".$pro['id'];
         }else{
-			$dataa = ($ssacc['u'] - $usagee['upload']).",".($ssacc['d'] - $usagee['download']).",".$ssacc['u'].",".$ssacc['d'].",".time().",".$pro['id'];
+            $writeable = false;
+            if(time() - $usagee['date'] >= 60 * 30){
+                $writeable = true;
+                $dataa = ($ssacc['u'] - $usagee['upload']).",".($ssacc['d'] - $usagee['download']).",".$ssacc['u'].",".$ssacc['d'].",".time().",".$pro['id'];
+            }
         }
-		$upmysql = "INSERT INTO `user_usage` (`upload`,`download`,`tupload`,`tdownload`,`date`,`sid`) VALUES(".$dataa.")";
-        $sql->query($upmysql);
+        if($writeable){
+            $upmysql = "INSERT INTO `user_usage` (`upload`,`download`,`tupload`,`tdownload`,`date`,`sid`) VALUES(".$dataa.")";
+            $sql->query($upmysql);
+        }
     }
     return $product;
 }
