@@ -35,6 +35,7 @@ $_VLANG['all_traffic_chart'] = "总流量报表";
 $_VLANG['upload_traffic_chart'] = "上传流量报表";
 $_VLANG['download_traffic_chart'] = "下载流量报表";
 $_VLANG['data_update_at'] = "数据更新于";
+$_VLANG['resetUUID'] = "重置UUID";
 
 //设置
 $_VLANG['database'] = "数据库";

@@ -21,6 +21,7 @@ function V2raySocks_initialize(array $params , $date = false){
     $query['CHANGE_PACKAGE'] = 'UPDATE `user` SET `transfer_enable` = :transfer_enable WHERE `sid` = :sid';
     $query['RESETUSERCHART'] = 'delete from `user_usage` where `sid` = :sid';
     $query['UPDATEBALANCE'] = 'UPDATE `user` SET `transfer_enable` = `transfer_enable` + :transfer WHERE `sid` = :sid';
+    $query['RESETUUID'] = 'UPDATE `user` SET `uuid` = :uuid WHERE `sid` = :sid';
     if($date){
         $query['RESET'] = 'UPDATE `user` SET `u`=0,`d`=0,`updated_at`='.$date.'  WHERE `sid` = :sid';
         $query['CHARTINFO'] = 'SELECT * FROM `user_usage` WHERE `sid` = :sid AND `date` >= '.$date.' ORDER BY `date` DESC';
@@ -217,7 +218,8 @@ function V2raySocks_ChangePackage(array $params){
 }
 
 function V2raySocks_AdminCustomButtonArray(){
-    return array(V2raySocks_get_lang('resetbandwidth') => 'ResetBandwidth');
+    return array(V2raySocks_get_lang('resetbandwidth') => 'ResetBandwidth',
+				 V2raySocks_get_lang('resetUUID') => 'ResetUUID');
 }
 
 function V2raySocks_ResetBandwidth(array $params){
@@ -246,7 +248,36 @@ function V2raySocks_ResetBandwidth(array $params){
     }
 }
 
+function V2raySocks_ResetUUID(array $params){
+    $query = V2raySocks_initialize($params,time());
+    try {
+        $dbhost = ($params['serverip']);
+        $dbname = ($params['configoption1']);
+        $dbuser = ($params['serverusername']);
+        $dbpass = ($params['serverpassword']);
+        $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+        $enable = $db->prepare($query['RESETUUID']);
+        $enable->bindValue(':sid', $params['serviceid']);
+        $enable->bindValue(':uuid', V2raySocks_GenerateUuid());
+        $todo = $enable->execute();
+        if (!$todo) {
+            $error = $db->errorInfo();
+            return $error;
+        }
+        return 'success';
+    }
+    catch (Exception $e) {
+        logModuleCall('V2raySocks', 'V2raySocks_ResetUUID', $params, $e->getMessage(), $e->getTraceAsString());
+        return $e->getMessage();
+    }
+}
+
 function V2raySocks_ClientArea($params) {
+	if(isset($_GET['V2raySocksAction']) && $_GET['V2raySocksAction'] == "ResetUUID"){
+		if($_GET['Serviceid'] == $params['serviceid']){
+			V2raySocks_ResetUUID($params);
+		}
+	}
     if($params['status'] == 'Active'){
         require_once 'lib/Mobile_Detect.php';
         $detect = new Mobile_Detect;

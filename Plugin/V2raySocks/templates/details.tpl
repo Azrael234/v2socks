@@ -78,7 +78,7 @@ background-color: rgba(0, 0, 0, .3);
 </style>
 {if ($infos)}
 	<div class="alert alert-success">
-		<p>{$infos}</p>
+		<p>{$infos|unescape:"html"}</p>
 	</div>
 {/if}
 <div class="plugin">
@@ -96,43 +96,6 @@ background-color: rgba(0, 0, 0, .3);
                     </ul>
                 </section>
             </aside>
-            {if $subscribe_enable == 1}
-            <section class="panel">
-                <header class="panel-heading">
-                    {V2raySocks_get_lang('subscribe_info')}
-                </header>
-                <div class="panel-body table-container">
-                    <table class="table general-table">
-                        <thead>
-                            <tr>
-                                <th>{V2raySocks_get_lang('subscribe_url')}</th>
-                                <!--<th>{V2raySocks_get_lang('subscribe_token')}</th>-->
-                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('action')}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{$HTTP_HOST}/modules/servers/UnlimitedSocks/subscribe.php?sid={$serviceid}&token={$subscribe_token}</td>
-                                <!--<td>{$subscribe_token}</td>-->
-                                <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-danger btn-block' onclick='ResetToken{$serviceid}()'>{V2raySocks_get_lang('reset_subscribe_token')}</button>
-                                <script>
-                                    function ResetToken{$serviceid}(){
-                                        layer.confirm('{$LANG.remoteAuthn.areYouSure}?', {
-                                          btn: ['{$LANG.confirm}','{$LANG.orderForm.cancel}']
-                                        }, function(){
-                                          send('{$smarty.server.REQUEST_URI|replace:'&amp;':'&'}&UnlimitedSocksAction=ResetToken&Serviceid={$serviceid}&TimeToken={time()}');
-                                          layer.msg('{$LANG.moduleactionsuccess}');
-                                          location.reload();
-                                        });
-                                    }
-                                </script>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-            {/if}
             <section class="panel">
                 <header class="panel-heading">
                     {V2raySocks_get_lang('user_info')}
@@ -144,6 +107,7 @@ background-color: rgba(0, 0, 0, .3);
                                 <th>{V2raySocks_get_lang('uuid')}</th>
                                 <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('created_at')}</th>
                                 <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('last_use_time')}</th>
+                                <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('action')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -151,6 +115,19 @@ background-color: rgba(0, 0, 0, .3);
                                 <td>{$usage.uuid}</td>
                                 <td class="hidden-xs hidden-sm">{$usage.created_at|date_format:'%Y-%m-%d %H:%M:%S'}</td>
                                 <td class="hidden-sm hidden-xs">{$usage.t|date_format:'%Y-%m-%d %H:%M:%S'}</td>
+                                <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-danger btn-block' onclick='ResetUUID{$serviceid}()'>{V2raySocks_get_lang('resetUUID')}</button>
+                                <script>
+                                    function ResetUUID{$serviceid}(){
+                                        layer.confirm('{$LANG.remoteAuthn.areYouSure}?', {
+                                          btn: ['{$LANG.confirm}','{$LANG.orderForm.cancel}']
+                                        }, function(){
+                                          send('{$smarty.server.REQUEST_URI|replace:'&amp;':'&'}&V2raySocksAction=ResetUUID&Serviceid={$serviceid}');
+                                          layer.msg('{$LANG.moduleactionsuccess}');
+                                          {literal}setTimeout(function(){location.reload();},2000);{/literal}
+                                        });
+                                    }
+                                </script>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -213,10 +190,11 @@ background-color: rgba(0, 0, 0, .3);
                                 <td data-hook="action">
                                         <button name="qrcode" class="btn btn-primary btn-xs" data-type="vmess{V2raySocks_get_lang('show_QRcode')}" data-params="{$node[6]['win']|unescape:"htmlall"}">
                                             <i class="fa fa-qrcode"></i>
-                                            
+                                            {V2raySocks_get_lang('show_QRcode')}
                                         </button>
                                         <button name="url" class="btn btn-primary btn-xs" data-params="{$node[6]['win']|unescape:"htmlall"}">
                                             <i class="fa fa-code"></i>
+                                            URL
                                         </button>
                                     {$yy = $yy + 1}
                                 </td>
