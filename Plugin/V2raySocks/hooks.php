@@ -95,7 +95,7 @@ function V2RaySocks_update_network($products,$server,$whproduct,$oldproducts){
             $writeable = false;
             if(time() - $usagee['date'] >= 60 * 30){
                 $writeable = true;
-                $dataa = ($ssacc['u'] - $usagee['upload']).",".($ssacc['d'] - $usagee['download']).",".$ssacc['u'].",".$ssacc['d'].",".time().",".$pro['id'];
+                $dataa = ($ssacc['u'] - $usagee['tupload']).",".($ssacc['d'] - $usagee['tdownload']).",".$ssacc['u'].",".$ssacc['d'].",".time().",".$pro['id'];
             }
         }
         if($writeable){
