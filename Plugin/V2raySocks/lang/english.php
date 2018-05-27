@@ -34,6 +34,11 @@ $_VLANG['all_traffic_chart'] = "All Traffic Chart";
 $_VLANG['upload_traffic_chart'] = "Upload Traffic Chart";
 $_VLANG['download_traffic_chart'] = "Download Traffic Chart";
 $_VLANG['data_update_at'] = "Data updated at";
+$_VLANG['resetUUID'] = "Reset UUID";
+$_VLANG['are_you_sure'] = "Are You Sure";
+$_VLANG['confirm'] = "Confirm";
+$_VLANG['cancel'] = "Cancel";
+$_VLANG['success'] = "Success";
 
 //Settings
 $_VLANG['database'] = "Database";

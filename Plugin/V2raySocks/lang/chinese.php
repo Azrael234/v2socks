@@ -36,6 +36,10 @@ $_VLANG['upload_traffic_chart'] = "上传流量报表";
 $_VLANG['download_traffic_chart'] = "下载流量报表";
 $_VLANG['data_update_at'] = "数据更新于";
 $_VLANG['resetUUID'] = "重置UUID";
+$_VLANG['are_you_sure'] = "你确定吗";
+$_VLANG['confirm'] = "确认";
+$_VLANG['cancel'] = "取消";
+$_VLANG['success'] = "成功";
 
 //设置
 $_VLANG['database'] = "数据库";

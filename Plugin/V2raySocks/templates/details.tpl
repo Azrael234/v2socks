@@ -118,11 +118,11 @@ background-color: rgba(0, 0, 0, .3);
                                 <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-danger btn-block' onclick='ResetUUID{$serviceid}()'>{V2raySocks_get_lang('resetUUID')}</button>
                                 <script>
                                     function ResetUUID{$serviceid}(){
-                                        layer.confirm('{$LANG.remoteAuthn.areYouSure}?', {
-                                          btn: ['{$LANG.confirm}','{$LANG.orderForm.cancel}']
+                                        layer.confirm('{V2raySocks_get_lang('are_you_sure')}?', {
+                                          btn: ['{V2raySocks_get_lang('confirm')}','{V2raySocks_get_lang('cancel')}']
                                         }, function(){
                                           send('{$smarty.server.REQUEST_URI|replace:'&amp;':'&'}&V2raySocksAction=ResetUUID&Serviceid={$serviceid}');
-                                          layer.msg('{$LANG.moduleactionsuccess}');
+                                          layer.msg('{V2raySocks_get_lang('success')}!');
                                           {literal}setTimeout(function(){location.reload();},2000);{/literal}
                                         });
                                     }
