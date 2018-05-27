@@ -211,21 +211,12 @@ background-color: rgba(0, 0, 0, .3);
                                 <td class="hidden-xs hidden-sm">{if ($node[4])}{$node[4]}{else}X{/if}</td>
                                 <td class="hidden-xs hidden-sm">{if ($node[4])}√{else}X{/if}</td>
                                 <td data-hook="action">
-                                        <button name="qrcode" class="btn btn-primary btn-xs" data-type="vmess IOS/Mac" data-params="{$node[6]['ios']|unescape:"htmlall"}">
+                                        <button name="qrcode" class="btn btn-primary btn-xs" data-type="vmess{V2raySocks_get_lang('show_QRcode')}" data-params="{$node[6]['win']|unescape:"htmlall"}">
                                             <i class="fa fa-qrcode"></i>
-                                            {V2raySocks_get_lang('show_QRcode')}(IOS/Mac)
-                                        </button>
-                                        <button name="url" class="btn btn-primary btn-xs" data-params="{$node[6]['ios']|unescape:"htmlall"}">
-                                            <i class="fa fa-qrcode"></i>
-                                            {V2raySocks_get_lang('show_URL')}(IOS/Mac)
-                                        </button>
-                                        <button name="qrcode" class="btn btn-primary btn-xs" data-type="vmess WIN/Android" data-params="{$node[6]['win']|unescape:"htmlall"}">
-                                            <i class="fa fa-qrcode"></i>
-                                            {V2raySocks_get_lang('show_QRcode')}(WIN/Android)
+                                            
                                         </button>
                                         <button name="url" class="btn btn-primary btn-xs" data-params="{$node[6]['win']|unescape:"htmlall"}">
-                                            <i class="fa fa-qrcode"></i>
-                                            {V2raySocks_get_lang('show_URL')}(WIN/Android)
+                                            <i class="fa fa-code"></i>
                                         </button>
                                     {$yy = $yy + 1}
                                 </td>

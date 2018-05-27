@@ -85,7 +85,7 @@ function V2RaySocks_update_network($products,$server,$whproduct,$oldproducts){
         $sql->select_db($whproduct[$pro['packageid']]);
         $sqlq = "SELECT * FROM `user` WHERE sid = " . $pro['id'];
         $ssacc = mysqli_fetch_array($sql->query($sqlq),MYSQLI_ASSOC);
-        $uasql = "SELECT * FROM `user_usage` WHERE sid = " . $pro['id'] ." ORDER BY `date` LIMIT 1";
+        $uasql = "SELECT * FROM `user_usage` WHERE sid = " . $pro['id'] ." ORDER BY `date` DESC LIMIT 1";
         $usagee = mysqli_fetch_array($sql->query($uasql),MYSQLI_ASSOC);
         $writeable = false;
         if(empty($usagee)){
