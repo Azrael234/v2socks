@@ -337,40 +337,25 @@ function V2raySocks_ClientArea($params) {
             $x = 0;
             foreach($noder as $nodee){
                 $nodee = explode('|', $nodee);
-                $str = base64_encode($nodee[3] . ":" . $usage['uuid'] . "@" . $nodee[1] . ":" . $nodee[2]);
-                $str = str_replace('=','',$str);
-                if($nodee[4]){
-                    $obfs = $nodee[4];
-                }else{
-                    $obfs = "none";
-                }
-                $str = "vmess://" . $str . "?remarks=" . $nodee[0] . "&obfs=" . $obfs;
-                if($nodee[5]){
-                    $str .= "&tls=1";
-                }
                 $atr1 = array(
                             "add" => $nodee[1],
                             "aid" => 64,
-                            "host"=> "",
+                            "host"=> $nodee[5],
                             "id"  => $usage['uuid'],
-                            "net" => "tcp",
-                            "path"=> "",
+                            "net" => $nodee[7],
+                            "path"=> $nodee[6],
                             "port"=> $nodee[2],
                             "ps"  => $nodee[0],
+                            "tls" => $nodee[4],
                             "v"   => 2
                         );
-                if($nodee[4]){
-                    $atr1['type'] = $nodee[4];
+                if($nodee[3]){
+                    $atr1['type'] = $nodee[3];
                 }else{
                     $atr1['type'] = "none";
                 }
-                if($nodee[5]){
-                    $atr1['tls'] = $nodee[5];
-                }else{
-                    $atr1['tls'] = "";
-                }
-                $nodee[6]['ios'] = $str;
-                $nodee[6]['win'] = "vmess://".base64_encode(json_encode($atr1));
+                $nodee['url']['ios'] = $str;
+                $nodee['url']['win'] = "vmess://".base64_encode(json_encode($atr1));
                 $results[$x] = $nodee;
                 $x++;
             }

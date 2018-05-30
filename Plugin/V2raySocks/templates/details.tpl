@@ -170,9 +170,11 @@ background-color: rgba(0, 0, 0, .3);
                             <tr>
                                 <th>{V2raySocks_get_lang('name')}</th>
                                 <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('address')}</th>
-                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('method')}</th>
                                 <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('port')}</th>
-                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('obfuscation')}</th>
+                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('type')}</th>
+                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('host')}</th>
+                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('path')}</th>
+                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('network')}</th>
                                 <th class="hidden-xs hidden-sm">TLS</th>
                                 <th>{V2raySocks_get_lang('action')}</th>
                             </tr>
@@ -183,16 +185,18 @@ background-color: rgba(0, 0, 0, .3);
                             <tr>
                                 <td>{$node[0]}</td>
                                 <td class="hidden-xs hidden-sm">{$node[1]}</td>
-                                <td class="hidden-xs hidden-sm">{$node[3]}</td>
                                 <td class="hidden-xs hidden-sm">{$node[2]}</td>
+                                <td class="hidden-xs hidden-sm">{if ($node[3])}{$node[3]}{else}X{/if}</td>
+                                <td class="hidden-xs hidden-sm">{if ($node[5])}{$node[5]}{else}X{/if}</td>
+                                <td class="hidden-xs hidden-sm">{if ($node[6])}{$node[6]}{else}X{/if}</td>
+                                <td class="hidden-xs hidden-sm">{if ($node[7])}{$node[7]}{else}X{/if}</td>
                                 <td class="hidden-xs hidden-sm">{if ($node[4])}{$node[4]}{else}X{/if}</td>
-                                <td class="hidden-xs hidden-sm">{if ($node[4])}√{else}X{/if}</td>
                                 <td data-hook="action">
-                                        <button name="qrcode" class="btn btn-primary btn-xs" data-type="vmess{V2raySocks_get_lang('show_QRcode')}" data-params="{$node[6]['win']|unescape:"htmlall"}">
+                                        <button name="qrcode" class="btn btn-primary btn-xs" data-type="vmess{V2raySocks_get_lang('show_QRcode')}" data-params="{$node['url']['win']|unescape:"htmlall"}">
                                             <i class="fa fa-qrcode"></i>
                                             {V2raySocks_get_lang('show_QRcode')}
                                         </button>
-                                        <button name="url" class="btn btn-primary btn-xs bty{$yy}" data-unit=".bty{$yy}" data-params="{$node[6]['win']|unescape:"htmlall"}" data-done="{V2raySocks_get_lang('copy_success')}">
+                                        <button name="url" class="btn btn-primary btn-xs bty{$yy}" data-unit=".bty{$yy}" data-params="{$node['url']['win']|unescape:"htmlall"}" data-done="{V2raySocks_get_lang('copy_success')}">
                                             <i class="fa fa-code"></i>
                                             URL
                                         </button>
