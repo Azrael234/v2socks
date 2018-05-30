@@ -192,7 +192,7 @@ background-color: rgba(0, 0, 0, .3);
                                             <i class="fa fa-qrcode"></i>
                                             {V2raySocks_get_lang('show_QRcode')}
                                         </button>
-                                        <button name="url" class="btn btn-primary btn-xs" data-params="{$node[6]['win']|unescape:"htmlall"}">
+                                        <button name="url" class="btn btn-primary btn-xs bty{$yy}" data-unit=".bty{$yy}" data-params="{$node[6]['win']|unescape:"htmlall"}" data-done="{V2raySocks_get_lang('copy_success')}">
                                             <i class="fa fa-code"></i>
                                             URL
                                         </button>
@@ -204,6 +204,10 @@ background-color: rgba(0, 0, 0, .3);
                     </table>
                 </div>
             </section>
+            <script>
+
+                
+            </script>
 
 			{if ($script)}
 			<section class="panel">
@@ -241,4 +245,5 @@ background-color: rgba(0, 0, 0, .3);
 </div>
 <!-- JavsScript -->
 <script src="modules/servers/{$module}/templates/static/layer.js"></script>
-<script src="modules/servers/{$module}/templates/static/js/SSRscript.js" charset="utf-8"></script>
+<script src="modules/servers/{$module}/templates/static/js/script.js" charset="utf-8"></script>
+<script src="modules/servers/{$module}/templates/static/js/clipboard.min.js" charset="utf-8"></script>

@@ -1,33 +1,4 @@
-﻿var Ping = function(opt) {
-    this.opt = opt || {};
-    this.favicon = this.opt.favicon || "/favicon.ico";
-    this.timeout = this.opt.timeout || 0;
-};
-Ping.prototype.ping = function(source, callback) {
-    this.img = new Image();
-    var timer;
-
-    
-    this.img.onload = pingCheck;
-    this.img.onerror = pingCheck;
-    if (this.timeout) { timer = setTimeout(pingCheck, this.timeout); }
-	var start = new Date();
-    function pingCheck(e) {
-        if (timer) { clearTimeout(timer); }
-        var pong = new Date() - start;
-
-        if (typeof callback === "function") {
-            if (e.type === "error") {
-                console.error("error loading resource");
-                return callback("error", pong);
-            }
-            return callback(null, pong);
-        }
-    }
-
-    this.img.src = source + this.favicon + "?" + (+new Date()); // Trigger image load with cache buster
-};
-var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+﻿var base64EncodeChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 function base64encode(str) {
     var out, i, len;
     var c1, c2, c3;
@@ -59,20 +30,6 @@ function base64encode(str) {
     return out;
 }
 $(document).ready(function() {
-    $('button[name="ping"]').on('click',function() {
-        var ping = new Ping();
-        var address = $(this).attr('data-host');
-        var timeout = 1000;
-        var _this  = $(this);
-        ping.ping('http://' + address,function(err,data) {
-			if (err) {
-				data = data + " " + err;
-				_this.parents('td').html('<span class="badge badge-danger">' + data + '</span>');
-			}else{
-				_this.parents('td').html('<span class="badge badge-primary">' + data + '</span>');
-			}
-        });
-    });
 	jQuery(document).ready(function($) {
 		$("button[name='qrcode']").on('click',function() {
 			str = $(this).attr('data-params');
@@ -97,7 +54,16 @@ $(document).ready(function() {
 		});
 		$("button[name='url']").on('click',function() {
 			str = $(this).attr('data-params');
-			layer.alert(str);
+            bty = $(this).attr('data-unit');
+            done = $(this).attr('data-done');
+            var clipboard = new Clipboard( bty , {
+                text: function() {
+                    return str;
+                }
+            });
+            clipboard.on('success', function(e) {
+                layer.alert(done);
+            });
 		});
 	});
 });

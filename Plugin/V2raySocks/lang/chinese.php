@@ -40,6 +40,7 @@ $_VLANG['are_you_sure'] = "你确定吗";
 $_VLANG['confirm'] = "确认";
 $_VLANG['cancel'] = "取消";
 $_VLANG['success'] = "成功";
+$_VLANG['copy_success'] = "复制成功";
 
 //设置
 $_VLANG['database'] = "数据库";

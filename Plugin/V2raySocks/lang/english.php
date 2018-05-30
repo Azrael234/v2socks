@@ -39,6 +39,7 @@ $_VLANG['are_you_sure'] = "Are You Sure";
 $_VLANG['confirm'] = "Confirm";
 $_VLANG['cancel'] = "Cancel";
 $_VLANG['success'] = "Success";
+$_VLANG['copy_success'] = "Copy Success";
 
 //Settings
 $_VLANG['database'] = "Database";
