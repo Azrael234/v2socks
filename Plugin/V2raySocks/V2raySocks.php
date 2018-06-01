@@ -32,8 +32,7 @@ function V2raySocks_initialize(array $params , $date = false){
     return $query;
 }
 
-function V2raySocks_MetaData()
-{
+function V2raySocks_MetaData(){
     return array(
         'DisplayName' => 'V2raySocks',
         'APIVersion' => '1.0',

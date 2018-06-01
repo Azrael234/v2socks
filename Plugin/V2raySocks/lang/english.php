@@ -14,6 +14,7 @@ $_VLANG['host'] = "HOST";
 $_VLANG['path'] = "Path";
 $_VLANG['network'] = "Network";
 $_VLANG['type'] = "Type";
+$_VLANG['trafficrate'] = "Traffic Rate";
 $_VLANG['download'] = "Download";
 $_VLANG['used'] = "Used";
 $_VLANG['last_use_time'] = "Last Used at";
@@ -43,6 +44,7 @@ $_VLANG['are_you_sure'] = "Are You Sure";
 $_VLANG['confirm'] = "Confirm";
 $_VLANG['cancel'] = "Cancel";
 $_VLANG['success'] = "Success";
+$_VLANG['copy'] = "Copy";
 $_VLANG['copy_success'] = "Copy Success";
 
 //Settings
@@ -60,7 +62,7 @@ $_VLANG['announcements'] = "announcements";
 $_VLANG['resetbandwidth_description'] = "need reset bandwidth or not";
 $_VLANG['bandwidth_description'] = "MB Leave blank for custom bandwidth";
 $_VLANG['start_port_description'] = "useless when exist in database";
-$_VLANG['routelist_description'] = "name|address|port|type|tls|host|path|network Each row for one route";
+$_VLANG['routelist_description'] = "name|address|port|type|tls|host|path|network|trafficrate Each row for one route";
 $_VLANG['announcements_description'] = "Write your announcements(new line </br>)";
 //Other
 $_VLANG['User_does_not_exists'] = "Model Error:User does not exists";

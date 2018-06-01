@@ -112,7 +112,12 @@ background-color: rgba(0, 0, 0, .3);
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{$usage.uuid}</td>
+                                <td>{$usage.uuid}
+                                    <button name="url" class="btn btn-primary btn-xs btyuuid" data-unit=".btyuuid" data-params="{$usage.uuid}" data-done="{V2raySocks_get_lang('copy_success')}">
+                                            <i class="fa fa-code"></i>
+                                            {V2raySocks_get_lang('copy')}
+                                        </button>
+                                </td>
                                 <td class="hidden-xs hidden-sm">{$usage.created_at|date_format:'%Y-%m-%d %H:%M:%S'}</td>
                                 <td class="hidden-sm hidden-xs">{$usage.t|date_format:'%Y-%m-%d %H:%M:%S'}</td>
                                 <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-danger btn-block' onclick='ResetUUID{$serviceid}()'>{V2raySocks_get_lang('resetUUID')}</button>
@@ -176,6 +181,7 @@ background-color: rgba(0, 0, 0, .3);
                                 <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('path')}</th>
                                 <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('network')}</th>
                                 <th class="hidden-xs hidden-sm">TLS</th>
+                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('trafficrate')}</th>
                                 <th>{V2raySocks_get_lang('action')}</th>
                             </tr>
                         </thead>
@@ -191,6 +197,7 @@ background-color: rgba(0, 0, 0, .3);
                                 <td class="hidden-xs hidden-sm">{if ($node[6])}{$node[6]}{else}X{/if}</td>
                                 <td class="hidden-xs hidden-sm">{if ($node[7])}{$node[7]}{else}X{/if}</td>
                                 <td class="hidden-xs hidden-sm">{if ($node[4])}{$node[4]}{else}X{/if}</td>
+                                <td class="hidden-xs hidden-sm">{if ($node[8])}{$node[8]}{else}1{/if}</td>
                                 <td data-hook="action">
                                         <button name="qrcode" class="btn btn-primary btn-xs" data-type="vmess{V2raySocks_get_lang('show_QRcode')}" data-params="{$node['url']['win']|unescape:"htmlall"}">
                                             <i class="fa fa-qrcode"></i>
