@@ -22,18 +22,20 @@
 	"email"  : "123@123.moe",
 	"name"   : "1234",
 	"package": [
-        "0" : ["package": "40g套餐",
-  				 "uuid"   : "09FD9959-5F82-41F7-967F-87AFDF31AFF6",
-				 "usage"  : "1000",
-				 "traffic": "40960000000",
-                 "nodes"  : "hk1|127.0.0.1|8300|none|tls|233.233.com|/233|ws|1"
-                ],
-        "1" : ["package": "100g套餐",
-  				 "uuid"   : "41DA057F-A3E6-424F-BEEC-38E0D58A6536",
-				 "usage"  : "10000",
-				 "traffic": "1099511627776",
-                 "nodes"  : "hk1|127.0.0.1|8300|none|tls|233.233.com|/233|ws|1"
-    ]
+		"0"  : [
+			"package": "40g套餐",
+			"uuid"   : "09FD9959-5F82-41F7-967F-87AFDF31AFF6",
+			"usage"  : "1000",
+			"traffic": "40960000000",
+			"nodes"  : "hk1|127.0.0.1|8300|none|tls|233.233.com|/233|ws|1"
+			],
+		"1"  : [
+			"package": "100g套餐",
+			"uuid"   : "41DA057F-A3E6-424F-BEEC-38E0D58A6536",
+			"usage"  : "10000",
+			"traffic": "1099511627776",
+			"nodes"  : "hk1|127.0.0.1|8300|none|tls|233.233.com|/233|ws|1"
+	]
 }
 ```
 
