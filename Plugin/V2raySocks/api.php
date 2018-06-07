@@ -5,18 +5,17 @@ $uckey = "oPajn1k2-jJanKn3k18bajdhaiYa_p";
 $apiresults = array( "result" => "error", "message" => "Unknown Error" );
 $input = false;
 if($_GET['data']){
-	$input = json_decode(V2RaySocks_API_ucAuthcode($_GET['data'], "DECODE", $uckey),true);
+    $input = json_decode(V2RaySocks_API_ucAuthcode($_GET['data'], "DECODE", $uckey),true);
 }
 if(is_array($input) && !empty($input) && V2RaySocks_API_checkInput($input)){
-	$email = $input['email'];
-	$password = $input['password'];
-	$uuid = $input['uuid'];
-	$password = WHMCS\Input\Sanitize::decode($password);
-	$authentication = new WHMCS\Authentication\Client($email, $password);
-	if($authentication->verifyFirstFactor()){
-		$user = $authentication->getUser();
-	    $apiresults = array( "result" => "success", "name" => $user->firstname, "email" => $user->email, "package" => array());
-		$query = V2RaySocks_API_queryToArray(\WHMCS\Database\Capsule::table('tblhosting')->where('userid', $user->id)->get());
+    $email = $input['email'];
+    $password = $input['password'];
+    $password = WHMCS\Input\Sanitize::decode($password);
+    $authentication = new WHMCS\Authentication\Client($email, $password);
+    if($authentication->verifyFirstFactor()){
+        $user = $authentication->getUser();
+        $apiresults = array( "result" => "success", "name" => $user->firstname, "email" => $user->email, "package" => array());
+        $query = V2RaySocks_API_queryToArray(\WHMCS\Database\Capsule::table('tblhosting')->where('userid', $user->id)->get());
         $products = V2RaySocks_API_RebuildProductArray(V2RaySocks_API_queryToArray(\WHMCS\Database\Capsule::table('tblproducts')->where('servertype', 'V2raySocks')->get()));
         $servers = V2RaySocks_API_queryToArray(\WHMCS\Database\Capsule::table('tblservers')->where('type', 'V2raySocks')->get());
         if(!empty($query)){
@@ -35,19 +34,20 @@ if(is_array($input) && !empty($input) && V2RaySocks_API_checkInput($input)){
                     $sql->select_db($products[$queryq['packageid']]['configoption1']);
                     $resultsql = "SELECT * FROM `user` where `sid` = ". $queryq['id'];
                     $result = mysqli_fetch_array($sql->query($resultsql),MYSQLI_ASSOC);
+                    $node = explode("\n",$products[$queryq['packageid']]['configoption4']);
                     $apiresults['package'][] = array(
                         "package" => $products[$queryq['packageid']]['name'],
                         "uuid"    => $result['uuid'],
                         "usage"   => $result['u'] + $result['d'],
                         "traffic" => $result['transfer_enable'],
-                        "nodes"   => $products[$queryq['packageid']]['configoption4']
+                        "nodes"   => $node
                     );
                 }
             }
         }
-	}else{
-    	$apiresults = array( "result" => "error", "message" => "Email or Password Invalid" );
-	}
+    }else{
+        $apiresults = array( "result" => "error", "message" => "Email or Password Invalid" );
+    }
 }else{
     $apiresults = array( "result" => "error", "message" => "Illegal Data" );
 }
@@ -74,10 +74,10 @@ function V2RaySocks_API_queryToArray($query){
 }
 
 function V2RaySocks_API_checkInput($input){
-	if(isset($input['email']) && isset($input['password'])){
-		return true;
-	}
-	return false;
+    if(isset($input['email']) && isset($input['password'])){
+        return true;
+    }
+    return false;
 }
 
 function V2RaySocks_API_ucAuthcode($str, $operation = "DECODE", $key = "", $expiry = 0){
@@ -156,14 +156,14 @@ function V2RaySocks_API_LicenseEncodePart($string, $key){
     $hash = '';
     while( $i < $strLen ) 
     {
-    	$ordStr = ord(substr($string, $i, 1));
+        $ordStr = ord(substr($string, $i, 1));
 
-		if( $j == $keyLen ) 
+        if( $j == $keyLen ) 
         {
             $j = 0;
         }
 
-		$ordKey = ord(substr($key, $j, 1));
+        $ordKey = ord(substr($key, $j, 1));
         $j++;
 
         $hash .= strrev(base_convert(dechex($ordStr + $ordKey), 16, 36));
