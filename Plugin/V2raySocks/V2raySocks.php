@@ -199,7 +199,7 @@ function V2raySocks_ChangePackage(array $params){
         $dbuser = $params['serverusername'];
         $dbpass = $params['serverpassword'];
         $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
-        $bandwidth = (!empty($params['configoption3']) ? convert($params['configoption3'], 'mb', 'bytes') : (!empty($params['configoptions']['traffic']) ? convert($params['configoptions']['traffic'], 'gb', 'bytes') : '1099511627776'));
+        $bandwidth = (!empty($params['configoption3']) ? V2raySocks_Convert($params['configoption3'], 'mb', 'bytes') : (!empty($params['configoptions']['traffic']) ? V2raySocks_Convert($params['configoptions']['traffic'], 'gb', 'bytes') : '1099511627776'));
         $enable = $db->prepare($query['CHANGE_PACKAGE']);
         $enable->bindValue(':transfer_enable', $bandwidth);
         $enable->bindValue(':sid', $params['serviceid']);
