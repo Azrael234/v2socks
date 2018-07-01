@@ -39,7 +39,7 @@ function make_vmess($nodee,$uuid){
     $atr1 = array(
         "add" => $nodee[1],
         "host"=> $nodee[5],
-        "id"  => $usage['uuid'],
+        "id"  => $uuid,
         "net" => $nodee[7],
         "path"=> $nodee[6],
         "port"=> $nodee[2],
