@@ -136,53 +136,55 @@ background-color: rgba(0, 0, 0, .3);
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table general-table">
-                        <thead>
-                            <tr>
-                                <th>{V2raySocks_get_lang('subscribe')}</th>
-                                <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('action')}</th>
-                                <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('action')}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>IOS</td>
+                    {if $enable_subscribe == 1}
+                        <table class="table general-table">
+                            <thead>
+                                <tr>
+                                    <th>{V2raySocks_get_lang('subscribe')}</th>
+                                    <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('action')}</th>
+                                    <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('action')}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>IOS</td>
+                                        <td>
+                                        <button name="url" class="btn btn-primary btn-xs btyurlios" data-unit=".btyurlios" data-params="https://{$HTTP_HOST}/modules/servers/V2raySocks/subscribe.php?sid={$serviceid}&token={$subscribe_token}" data-done="{V2raySocks_get_lang('copy_success')}">
+                                                <i class="fa fa-code"></i>
+                                                {V2raySocks_get_lang('copy')}
+                                            </button>
+                                    </td>
+                                    <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-xs btn-danger btn-block' onclick='resetToken{$serviceid}()'>{V2raySocks_get_lang('resetToken')}</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Android/Win</td>
                                     <td>
-                                    <button name="url" class="btn btn-primary btn-xs btyurlios" data-unit=".btyurlios" data-params="https://{$HTTP_HOST}/modules/servers/V2raySocks/subscribe.php?sid={$serviceid}&token={$subscribe_token}" data-done="{V2raySocks_get_lang('copy_success')}">
-                                            <i class="fa fa-code"></i>
-                                            {V2raySocks_get_lang('copy')}
-                                        </button>
-                                </td>
-                                <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-xs btn-danger btn-block' onclick='resetToken{$serviceid}()'>{V2raySocks_get_lang('resetToken')}</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Android/Win</td>
-                                <td>
-                                    <button name="url" class="btn btn-primary btn-xs btyurlothers" data-unit=".btyurlothers" data-params="https://{$HTTP_HOST}/modules/servers/V2raySocks/osubscribe.php?sid={$serviceid}&token={$subscribe_token}" data-done="{V2raySocks_get_lang('copy_success')}">
-                                            <i class="fa fa-code"></i>
-                                            {V2raySocks_get_lang('copy')}
-                                        </button>
-                                </td>
-                                <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-xs btn-danger btn-block' onclick='resetToken{$serviceid}()'>{V2raySocks_get_lang('resetToken')}</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <script>
-                            function resetToken{$serviceid}(){
-                                layer.confirm('{V2raySocks_get_lang('are_you_sure')}?', {
-                                  btn: ['{V2raySocks_get_lang('confirm')}','{V2raySocks_get_lang('cancel')}']
-                                }, function(){
-                                  send('{$smarty.server.REQUEST_URI|replace:'&amp;':'&'}&V2raySocksAction=ResetToken&Serviceid={$serviceid}');
-                                  layer.msg('{V2raySocks_get_lang('success')}!');
-                                  {literal}setTimeout(function(){location.reload();},2000);{/literal}
-                                });
-                            }
-                        </script>
-                    </table>
+                                        <button name="url" class="btn btn-primary btn-xs btyurlothers" data-unit=".btyurlothers" data-params="https://{$HTTP_HOST}/modules/servers/V2raySocks/osubscribe.php?sid={$serviceid}&token={$subscribe_token}" data-done="{V2raySocks_get_lang('copy_success')}">
+                                                <i class="fa fa-code"></i>
+                                                {V2raySocks_get_lang('copy')}
+                                            </button>
+                                    </td>
+                                    <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-xs btn-danger btn-block' onclick='resetToken{$serviceid}()'>{V2raySocks_get_lang('resetToken')}</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <script>
+                                function resetToken{$serviceid}(){
+                                    layer.confirm('{V2raySocks_get_lang('are_you_sure')}?', {
+                                      btn: ['{V2raySocks_get_lang('confirm')}','{V2raySocks_get_lang('cancel')}']
+                                    }, function(){
+                                      send('{$smarty.server.REQUEST_URI|replace:'&amp;':'&'}&V2raySocksAction=ResetToken&Serviceid={$serviceid}');
+                                      layer.msg('{V2raySocks_get_lang('success')}!');
+                                      {literal}setTimeout(function(){location.reload();},2000);{/literal}
+                                    });
+                                }
+                            </script>
+                        </table>
+                    {/if}
                 </div>
             </section>
-            <!--progress bar start-->
+            
             <section class="panel">
                 <header class="panel-heading">
                     {V2raySocks_get_lang('usage_chart')} ({V2raySocks_get_lang('bandwidth')}：{$usage.tr_MB_GB})

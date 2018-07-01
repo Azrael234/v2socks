@@ -381,7 +381,6 @@ function V2raySocks_ClientArea($params) {
                           's_MB_GB' => V2raySocks_MBGB(round(($usage['u'] + $usage['d'])/1048576,2)),
                           'u_MB_GB' => V2raySocks_MBGB(round($usage['u']/1048576,2)),
                           'd_MB_GB' => V2raySocks_MBGB(round($usage['d']/1048576,2)));
-            var_dump($params['configoption6']);
             if($params['configoption6'] == 1){
                 if($params['username'] == ""){
                     $newpsusern = V2raySocks_RandomPass(12);
@@ -402,6 +401,7 @@ function V2raySocks_ClientArea($params) {
                                                         'nowdate' => date('m/d  H:i',time()),
                                                         'infos' => $infos,
                                                         'subscribe_token' => $newpsusern,
+                                                        'enable_subscribe' => $params['configoption6'],
                                                         'HTTP_HOST' => $_SERVER['HTTP_HOST'])
                 );
             }
