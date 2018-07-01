@@ -4,9 +4,13 @@ if (!defined("WHMCS")) die("This file cannot be accessed directly");
 
 $_VLANG['locale'] = "en";
 
+$_VLANG['subscribe'] = "subscribe";
+$_VLANG['resetToken'] = "resetToken";
+$_VLANG['url'] = "url";
 //ClientArea
 $_VLANG['error_Service_Disable'] = "Error. Your Service might be down. Please refresh or contact the support";
 
+$_VLANG['alterId'] = "alterId";
 $_VLANG['uuid'] = "UUID";
 $_VLANG['all_port'] = "all Ports";
 $_VLANG['upload'] = "Upload";

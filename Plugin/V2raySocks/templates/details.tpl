@@ -120,7 +120,7 @@ background-color: rgba(0, 0, 0, .3);
                                 </td>
                                 <td class="hidden-xs hidden-sm">{$usage.created_at|date_format:'%Y-%m-%d %H:%M:%S'}</td>
                                 <td class="hidden-sm hidden-xs">{$usage.t|date_format:'%Y-%m-%d %H:%M:%S'}</td>
-                                <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-danger btn-block' onclick='ResetUUID{$serviceid}()'>{V2raySocks_get_lang('resetUUID')}</button>
+                                <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-xs btn-danger btn-block' onclick='ResetUUID{$serviceid}()'>{V2raySocks_get_lang('resetUUID')}</button>
                                 <script>
                                     function ResetUUID{$serviceid}(){
                                         layer.confirm('{V2raySocks_get_lang('are_you_sure')}?', {
@@ -135,6 +135,53 @@ background-color: rgba(0, 0, 0, .3);
                                 </td>
                             </tr>
                         </tbody>
+                    </table>
+                    <table class="table general-table">
+                        <thead>
+                            <tr>
+                                <th>{V2raySocks_get_lang('subscribe')}</th>
+                                <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('action')}</th>
+                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('url')}</th>
+                                <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('action')}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IOS</td>
+                                    <td>
+                                    <button name="url" class="btn btn-primary btn-xs btyurlios" data-unit=".btyurlios" data-params="https://{$HTTP_HOST}/modules/servers/V2raySocks/subscribe.php?sid={$serviceid}&token={$subscribe_token}" data-done="{V2raySocks_get_lang('copy_success')}">
+                                            <i class="fa fa-code"></i>
+                                            {V2raySocks_get_lang('copy')}
+                                        </button>
+                                </td>
+                                <td class="hidden-xs hidden-sm">{$usage.created_at|date_format:'%Y-%m-%d %H:%M:%S'}</td>
+                                <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-xs btn-danger btn-block' onclick='resetToken{$serviceid}()'>{V2raySocks_get_lang('resetToken')}</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Android/Win</td>
+                                <td>
+                                    <button name="url" class="btn btn-primary btn-xs btyurlothers" data-unit=".btyurlothers" data-params="https://{$HTTP_HOST}/modules/servers/V2raySocks/osubscribe.php?sid={$serviceid}&token={$subscribe_token}" data-done="{V2raySocks_get_lang('copy_success')}">
+                                            <i class="fa fa-code"></i>
+                                            {V2raySocks_get_lang('copy')}
+                                        </button>
+                                </td>
+                                <td class="hidden-xs hidden-sm">{$usage.created_at|date_format:'%Y-%m-%d %H:%M:%S'}</td>
+                                <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-xs btn-danger btn-block' onclick='resetToken{$serviceid}()'>{V2raySocks_get_lang('resetToken')}</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <script>
+                            function resetToken{$serviceid}(){
+                                layer.confirm('{V2raySocks_get_lang('are_you_sure')}?', {
+                                  btn: ['{V2raySocks_get_lang('confirm')}','{V2raySocks_get_lang('cancel')}']
+                                }, function(){
+                                  send('{$smarty.server.REQUEST_URI|replace:'&amp;':'&'}&V2raySocksAction=ResetToken&Serviceid={$serviceid}');
+                                  layer.msg('{V2raySocks_get_lang('success')}!');
+                                  {literal}setTimeout(function(){location.reload();},2000);{/literal}
+                                });
+                            }
+                        </script>
                     </table>
                 </div>
             </section>
@@ -182,6 +229,7 @@ background-color: rgba(0, 0, 0, .3);
                                 <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('network')}</th>
                                 <th class="hidden-xs hidden-sm">TLS</th>
                                 <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('trafficrate')}</th>
+                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('alterId')}</th>
                                 <th>{V2raySocks_get_lang('action')}</th>
                             </tr>
                         </thead>
@@ -198,7 +246,12 @@ background-color: rgba(0, 0, 0, .3);
                                 <td class="hidden-xs hidden-sm">{if ($node[7])}{$node[7]}{else}X{/if}</td>
                                 <td class="hidden-xs hidden-sm">{if ($node[4])}{$node[4]}{else}X{/if}</td>
                                 <td class="hidden-xs hidden-sm">{if ($node[8])}{$node[8]}{else}1{/if}</td>
+                                <td class="hidden-xs hidden-sm">{if ($node[9])}{$node[9]}{else}64{/if}</td>
                                 <td data-hook="action">
+                                        <button name="qrcode" class="btn btn-primary btn-xs" data-type="vmess{V2raySocks_get_lang('show_QRcode')}" data-params="{$node['url']['ios']|unescape:"htmlall"}">
+                                            <i class="fa fa-qrcode"></i>
+                                            IOS
+                                        </button>
                                         <button name="qrcode" class="btn btn-primary btn-xs" data-type="vmess{V2raySocks_get_lang('show_QRcode')}" data-params="{$node['url']['win']|unescape:"htmlall"}">
                                             <i class="fa fa-qrcode"></i>
                                             {V2raySocks_get_lang('show_QRcode')}

@@ -6,7 +6,7 @@
 if (!defined("WHMCS")) {
     die("This file cannot be accessed directly");
 }
-
+use WHMCS\Database\Capsule;
 require_once 'lib/functions.php';
 require_once 'config.php';
 
@@ -50,7 +50,12 @@ function V2raySocks_ConfigOptions(){
         ),
     V2raySocks_get_lang('bandwidth') => array('Type' => 'text', 'Size' => '25', 'Description' => V2raySocks_get_lang('bandwidth_description')),
     V2raySocks_get_lang('routelist') => array('Type' => 'textarea', 'Rows' => '3', 'Cols' => '50', 'Description' => V2raySocks_get_lang('routelist_description')),
-    V2raySocks_get_lang('announcements') => array('Type' => 'textarea', 'Rows' => '3', 'Cols' => '50', 'Description' => V2raySocks_get_lang('announcements_description'))
+    V2raySocks_get_lang('announcements') => array('Type' => 'textarea', 'Rows' => '3', 'Cols' => '50', 'Description' => V2raySocks_get_lang('announcements_description')),
+    V2raySocks_get_lang('subscribe') => array(
+        'Type'        => 'dropdown',
+        'Options'     => array('1'=> V2raySocks_get_lang('enable'), '0' => V2raySocks_get_lang('disable')),
+        'Description' => V2raySocks_get_lang('subscribe_description')
+        )
     );
 }
 
@@ -74,11 +79,7 @@ function V2raySocks_TestConnection(array $params){
 function V2raySocks_CreateAccount(array $params){
     $query = V2raySocks_initialize($params);
     try {
-        $dbhost = $params['serverip'];
-        $dbname = $params['configoption1'];
-        $dbuser = $params['serverusername'];
-        $dbpass = $params['serverpassword'];
-        $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+        $db = V2raySocks_getDBFromParams($params);
         $already = $db->prepare($query['ALREADY_EXISTS']);
         $already->bindValue(':sid', $params['serviceid']);
         $already->execute();
@@ -110,11 +111,7 @@ function V2raySocks_CreateAccount(array $params){
 function V2raySocks_SuspendAccount(array $params){
     $query = V2raySocks_initialize($params);
     try {
-        $dbhost = $params['serverip'];
-        $dbname = $params['configoption1'];
-        $dbuser = $params['serverusername'];
-        $dbpass = $params['serverpassword'];
-        $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+        $db = V2raySocks_getDBFromParams($params);
         $enable = $db->prepare($query['ENABLE']);
         $enable->bindValue(':enable', '0');
         $enable->bindValue(':sid', $params['serviceid']);
@@ -135,11 +132,7 @@ function V2raySocks_SuspendAccount(array $params){
 function V2raySocks_UnsuspendAccount(array $params){
     $query = V2raySocks_initialize($params,time());
     try {
-        $dbhost = $params['serverip'];
-        $dbname = $params['configoption1'];
-        $dbuser = $params['serverusername'];
-        $dbpass = $params['serverpassword'];
-        $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+        $db = V2raySocks_getDBFromParams($params);
         $enable = $db->prepare($query['ENABLE']);
         $enable->bindValue(':enable', '1');
         $enable->bindValue(':sid', $params['serviceid']);
@@ -170,11 +163,7 @@ function V2raySocks_UnsuspendAccount(array $params){
 function V2raySocks_TerminateAccount(array $params){
     $query = V2raySocks_initialize($params);
     try {
-        $dbhost = $params['serverip'];
-        $dbname = $params['configoption1'];
-        $dbuser = $params['serverusername'];
-        $dbpass = $params['serverpassword'];
-        $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+        $db = V2raySocks_getDBFromParams($params);
         $enable = $db->prepare($query['DELETE_ACCOUNT']);
         $enable->bindValue(':sid', $params['serviceid']);
         
@@ -194,11 +183,7 @@ function V2raySocks_TerminateAccount(array $params){
 function V2raySocks_ChangePackage(array $params){
     $query = V2raySocks_initialize($params);
     try {
-        $dbhost = $params['serverip'];
-        $dbname = $params['configoption1'];
-        $dbuser = $params['serverusername'];
-        $dbpass = $params['serverpassword'];
-        $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+        $db = V2raySocks_getDBFromParams($params);
         $bandwidth = (!empty($params['configoption3']) ? V2raySocks_Convert($params['configoption3'], 'mb', 'bytes') : (!empty($params['configoptions']['traffic']) ? V2raySocks_Convert($params['configoptions']['traffic'], 'gb', 'bytes') : '1099511627776'));
         $enable = $db->prepare($query['CHANGE_PACKAGE']);
         $enable->bindValue(':transfer_enable', $bandwidth);
@@ -224,11 +209,7 @@ function V2raySocks_AdminCustomButtonArray(){
 function V2raySocks_ResetBandwidth(array $params){
     $query = V2raySocks_initialize($params,time());
     try {
-        $dbhost = ($params['serverip']);
-        $dbname = ($params['configoption1']);
-        $dbuser = ($params['serverusername']);
-        $dbpass = ($params['serverpassword']);
-        $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+        $db = V2raySocks_getDBFromParams($params);
         $enable = $db->prepare($query['RESET']);
         $enable->bindValue(':sid', $params['serviceid']);
         $todo = $enable->execute();
@@ -250,11 +231,7 @@ function V2raySocks_ResetBandwidth(array $params){
 function V2raySocks_ResetUUID(array $params){
     $query = V2raySocks_initialize($params,time());
     try {
-        $dbhost = ($params['serverip']);
-        $dbname = ($params['configoption1']);
-        $dbuser = ($params['serverusername']);
-        $dbpass = ($params['serverpassword']);
-        $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+        $db = V2raySocks_getDBFromParams($params);
         $enable = $db->prepare($query['RESETUUID']);
         $enable->bindValue(':sid', $params['serviceid']);
         $enable->bindValue(':uuid', V2raySocks_GenerateUuid());
@@ -271,12 +248,30 @@ function V2raySocks_ResetUUID(array $params){
     }
 }
 
+function V2raySocks_ResetToken($uid,$sid,$password = null){
+    $query = \WHMCS\Database\Capsule::table('tblhosting')->where('id', $sid)->first();
+    if(empty($query->userid) || $uid != $query->userid){
+        die('Service Unisset or Unexpected Error');
+    }else{
+        $result = \WHMCS\Database\Capsule::table('tblhosting')->where('id', $sid)->update(['username' => $password]);
+        if(empty($result)){
+            die('Reset Failed');
+        }else{
+            die('Success');
+        }
+    }
+}
+
 function V2raySocks_ClientArea($params) {
 	if(isset($_GET['V2raySocksAction']) && $_GET['V2raySocksAction'] == "ResetUUID"){
 		if($_GET['Serviceid'] == $params['serviceid']){
 			V2raySocks_ResetUUID($params);
 		}
-	}
+	}elseif(isset($_GET['V2raySocksAction']) && $_GET['V2raySocksAction'] == "ResetToken"){
+        if($_GET['Serviceid'] == $params['serviceid']){
+            V2raySocks_ResetToken($params['userid'],$_GET['Serviceid'],V2raySocks_RandomPass(12));
+        }
+    }
     if($params['status'] == 'Active'){
         require_once 'lib/Mobile_Detect.php';
         $detect = new Mobile_Detect;
@@ -289,11 +284,7 @@ function V2raySocks_ClientArea($params) {
         }
         $query = V2raySocks_initialize($params,$date);
         try {
-            $dbhost = $params['serverip'];
-            $dbname = $params['configoption1'];
-            $dbuser = $params['serverusername'];
-            $dbpass = $params['serverpassword'];
-            $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+            $db = V2raySocks_getDBFromParams($params);
             $usage = $db->prepare($query['USERINFO']);
             $usage->bindValue(':sid', $params['serviceid']);
             $usage->execute();
@@ -338,7 +329,6 @@ function V2raySocks_ClientArea($params) {
                 $nodee = explode('|', $nodee);
                 $atr1 = array(
                             "add" => $nodee[1],
-                            "aid" => 64,
                             "host"=> $nodee[5],
                             "id"  => $usage['uuid'],
                             "net" => $nodee[7],
@@ -348,12 +338,32 @@ function V2raySocks_ClientArea($params) {
                             "tls" => $nodee[4],
                             "v"   => 2
                         );
+                $atr2 = array(
+                            "add" => $nodee[1],
+                            "file"=> $nodee[5],
+                            "id"  => $usage['uuid'],
+                            "net" => $nodee[7],
+                            "host"=> $nodee[6],
+                            "port"=> $nodee[2],
+                            "ps"  => $nodee[0],
+                            "tls" => $nodee[4],
+                            "v"   => 2
+                        );
+                if ($node[9]){
+                    $atr1['aid'] = $nodee[9];
+                    $atr2['aid'] = $nodee[9];
+                }else{
+                    $atr1['aid'] = 64;
+                    $atr2['aid'] = 64;
+                }
                 if($nodee[3]){
                     $atr1['type'] = $nodee[3];
+                    $atr2['type'] = $nodee[3];
                 }else{
                     $atr1['type'] = "none";
+                    $atr2['type'] = "none";
                 }
-                $nodee['url']['ios'] = $str;
+                $nodee['url']['ios'] = "vmess://".base64_encode(json_encode($atr2));
                 $nodee['url']['win'] = "vmess://".base64_encode(json_encode($atr1));
                 $results[$x] = $nodee;
                 $x++;
@@ -371,6 +381,15 @@ function V2raySocks_ClientArea($params) {
                           's_MB_GB' => V2raySocks_MBGB(round(($usage['u'] + $usage['d'])/1048576,2)),
                           'u_MB_GB' => V2raySocks_MBGB(round($usage['u']/1048576,2)),
                           'd_MB_GB' => V2raySocks_MBGB(round($usage['d']/1048576,2)));
+            var_dump($params['configoption6']);
+            if($params['configoption6'] == 1){
+                if($params['username'] == ""){
+                    $newpsusern = V2raySocks_RandomPass(12);
+                    $result = Capsule::table('tblhosting')->where('id', $params['serviceid'])->update(['username' => $newpsusern]);
+                }else{
+                    $newpsusern = $params['username'];
+                }
+            }
             if ($usage && $usage['enable']) {
                 return array(
                 'tabOverviewReplacementTemplate' => 'details.tpl',
@@ -382,6 +401,7 @@ function V2raySocks_ClientArea($params) {
                                                         'datadays' => $datadays,
                                                         'nowdate' => date('m/d  H:i',time()),
                                                         'infos' => $infos,
+                                                        'subscribe_token' => $newpsusern,
                                                         'HTTP_HOST' => $_SERVER['HTTP_HOST'])
                 );
             }
@@ -405,14 +425,20 @@ function V2raySocks_ClientArea($params) {
     }
 }
 
+function V2raySocks_RandomPass($length = 8){
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; 
+    $password = ''; 
+    for ( $i = 0; $i < $length; $i++ ) 
+    { 
+        $password .= $chars[ mt_rand(0, strlen($chars) - 1) ]; 
+    } 
+    return $password; 
+}
+
 function V2raySocks_AdminServicesTabFields(array $params){
     $query = V2raySocks_initialize($params);
     try {
-        $dbhost = $params['serverip'];
-        $dbname = $params['configoption1'];
-        $dbuser = $params['serverusername'];
-        $dbpass = $params['serverpassword'];
-        $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+        $db = V2raySocks_getDBFromParams($params);
         $userinfo = $db->prepare($query['USERINFO']);
         $userinfo->bindValue(':sid', $params['serviceid']);
         $userinfo->execute();
@@ -425,6 +451,15 @@ function V2raySocks_AdminServicesTabFields(array $params){
         logModuleCall('V2raySocks', 'V2raySocks_AdminServicesTabFields', $params, $e->getMessage(), $e->getTraceAsString());
         return $e->getTraceAsString();
     }
+}
+
+function V2raySocks_getDBFromParams($params){
+    $dbhost = $params['serverip'];
+    $dbname = $params['configoption1'];
+    $dbuser = $params['serverusername'];
+    $dbpass = $params['serverpassword'];
+    $db = new PDO('mysql:host=' . $dbhost . ';dbname=' . $dbname, $dbuser, $dbpass);
+    return $db;
 }
 
 function V2raySocks_make_script($name,$label,$data){

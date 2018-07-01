@@ -5,7 +5,8 @@ $uckey = "oPajn1k2-jJanKn3k18bajdhaiYa_p";
 $apiresults = array( "result" => "error", "message" => "Unknown Error" );
 $input = false;
 if($_GET['data']){
-    $input = json_decode(V2RaySocks_API_ucAuthcode($_GET['data'], "DECODE", $uckey),true);
+    $data = str_replace(" ", "+", $_GET['data']);
+    $input = json_decode(V2RaySocks_API_ucAuthcode($data, "DECODE", $uckey),true);
 }
 if(is_array($input) && !empty($input) && V2RaySocks_API_checkInput($input)){
     $email = $input['email'];

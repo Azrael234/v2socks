@@ -4,9 +4,14 @@ if (!defined("WHMCS")) die("This file cannot be accessed directly");
 
 $_VLANG['locale'] = "zh_cn";
 
+$_VLANG['subscribe'] = "订阅";
+$_VLANG['resetToken'] = "重置口令";
+$_VLANG['url'] = "订阅地址";
+
 //客户显示
 $_VLANG['error_Service_Disable'] = "出现了一些问题，可能您的服务还未开通或者已经被删除，请稍后再来试试。";
 
+$_VLANG['alterId'] = "额外id";
 $_VLANG['uuid'] = "UUID";
 $_VLANG['port'] = "端口";
 $_VLANG['host'] = "HOST";
@@ -63,7 +68,7 @@ $_VLANG['announcements'] = "公告信息";
 $_VLANG['resetbandwidth_description'] = "是否需要重置流量";
 $_VLANG['bandwidth_description'] = "单位MB 自定义流量套餐请勿填写";
 $_VLANG['start_port_description'] = "如果数据库有记录此项无效";
-$_VLANG['routelist_description'] = "格式 xxx|服务器地址|端口|伪装类型|tls|host|路径|传输协议|流量倍率 一行一个，不支持留空";
+$_VLANG['routelist_description'] = "格式 xxx|服务器地址|端口|伪装类型|tls|host|路径|传输协议|流量倍率|额外id 一行一个，不支持留空";
 $_VLANG['announcements_description'] = "输入需要公告的信息(换行使用 < /br >)";
 
 //其他
