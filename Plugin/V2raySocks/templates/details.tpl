@@ -141,7 +141,6 @@ background-color: rgba(0, 0, 0, .3);
                             <tr>
                                 <th>{V2raySocks_get_lang('subscribe')}</th>
                                 <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('action')}</th>
-                                <th class="hidden-xs hidden-sm">{V2raySocks_get_lang('url')}</th>
                                 <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('action')}</th>
                             </tr>
                         </thead>
@@ -154,7 +153,6 @@ background-color: rgba(0, 0, 0, .3);
                                             {V2raySocks_get_lang('copy')}
                                         </button>
                                 </td>
-                                <td class="hidden-xs hidden-sm">{$usage.created_at|date_format:'%Y-%m-%d %H:%M:%S'}</td>
                                 <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-xs btn-danger btn-block' onclick='resetToken{$serviceid}()'>{V2raySocks_get_lang('resetToken')}</button>
                                 </td>
                             </tr>
@@ -166,7 +164,6 @@ background-color: rgba(0, 0, 0, .3);
                                             {V2raySocks_get_lang('copy')}
                                         </button>
                                 </td>
-                                <td class="hidden-xs hidden-sm">{$usage.created_at|date_format:'%Y-%m-%d %H:%M:%S'}</td>
                                 <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-xs btn-danger btn-block' onclick='resetToken{$serviceid}()'>{V2raySocks_get_lang('resetToken')}</button>
                                 </td>
                             </tr>
