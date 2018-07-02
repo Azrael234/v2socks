@@ -48,7 +48,7 @@ function make_vmess($nodee,$uuid){
         "v"   => 2
     );
     if ($nodee[9]){
-        $atr2['aid'] = $nodee[9];
+        $atr2['aid'] = intval($nodee[9]);
     }else{
         $atr2['aid'] = 64;
     }

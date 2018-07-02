@@ -350,8 +350,8 @@ function V2raySocks_ClientArea($params) {
                             "v"   => 2
                         );
                 if ($nodee[9]){
-                    $atr1['aid'] = $nodee[9];
-                    $atr2['aid'] = $nodee[9];
+                    $atr1['aid'] = intval($nodee[9]);
+                    $atr2['aid'] = intval($nodee[9]);
                 }else{
                     $atr1['aid'] = 64;
                     $atr2['aid'] = 64;
