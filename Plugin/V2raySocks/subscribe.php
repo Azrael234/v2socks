@@ -47,5 +47,15 @@ function make_vmess($nodee,$uuid){
         "tls" => $nodee[4],
         "v"   => 2
     );
+    if ($nodee[9]){
+        $atr2['aid'] = $nodee[9];
+    }else{
+        $atr2['aid'] = 64;
+    }
+    if($nodee[3]){
+        $atr2['type'] = $nodee[3];
+    }else{
+        $atr2['type'] = "none";
+    }
     return "vmess://".base64_encode(json_encode($atr2));  
 }

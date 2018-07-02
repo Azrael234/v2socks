@@ -349,7 +349,7 @@ function V2raySocks_ClientArea($params) {
                             "tls" => $nodee[4],
                             "v"   => 2
                         );
-                if ($node[9]){
+                if ($nodee[9]){
                     $atr1['aid'] = $nodee[9];
                     $atr2['aid'] = $nodee[9];
                 }else{
