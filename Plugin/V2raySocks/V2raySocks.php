@@ -320,9 +320,14 @@ function V2raySocks_ClientArea($params) {
             }
 
             $nodes = $params['configoption4'];
+            if($nodes == ""){
+                $servers = \WHMCS\Database\Capsule::table('tblservers')->where('id', $params['serverid'])->get();
+                $servers = V2raySocks_P_QueryToArray($servers);
+                $nodes = $servers[0]['assignedips'];
+            }
             $z = 0;
             $results = array();
-            
+
             $noder = explode("\n",$nodes);
             $x = 0;
             foreach($noder as $nodee){
@@ -543,4 +548,16 @@ function V2raySocks_Convert($number, $from, $to){
     default:
     }
     return $number;
+}
+
+function V2raySocks_P_QueryToArray($query){
+    $products = array();
+    foreach ($query as $product) {
+        $producta = array();
+        foreach($product as $k => $produc){
+            $producta[$k] = $produc;
+        }
+        $products[] = $producta;
+    }
+    return $products;
 }

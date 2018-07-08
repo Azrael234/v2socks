@@ -278,26 +278,36 @@ background-color: rgba(0, 0, 0, .3);
                     {V2raySocks_get_lang('traffic_chart')} ({$datadays} {V2raySocks_get_lang('days')})
                 </header>
                 <div class="panel-body" id="chart-usage">
-					
-					<div class="row clearfix">
-						<div class="col-xs-12">
-							<h3 class="block-title text-primary">{V2raySocks_get_lang('all_traffic_chart')}</h3>
-							<canvas id="totalc" ></canvas>
-						</div>
-						<div class="col-xs-12">
-							<h3 class="block-title text-primary">{V2raySocks_get_lang('upload_traffic_chart')}</h3>
-							<canvas id="uploadc" ></canvas>
-						</div>
-						<div class="col-xs-12">
-							<h3 class="block-title text-primary">{V2raySocks_get_lang('download_traffic_chart')}</h3>
-							<canvas id="downloadc" ></canvas>
-						</div>
-					</div>
-				
-				
+					<div class="tab-content margin-bottom">
+                        <ul class="nav nav-tabs" id="myTab" >                                                                  
+                            <li class="active">
+                                <a href="#totalcOverview" data-toggle="tab" >{V2raySocks_get_lang('all_traffic_chart')}</a>
+                            </li>
+                            <li>
+                                <a href="#uploadcOverview" data-toggle="tab" >{V2raySocks_get_lang('upload_traffic_chart')}</a>
+                            </li>
+                            <li>
+                                <a href="#downloadcOverview" data-toggle="tab">{V2raySocks_get_lang('download_traffic_chart')}</a>
+                            </li>
+                        </ul>
+                        <div role="tabpanel" class="tab-pane fade in active" id="totalcOverview">
+                            <h3 class="block-title text-primary"></h3>
+                            <canvas id="totalc" ></canvas>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade in active" id="uploadcOverview">
+                            <h3 class="block-title text-primary"></h3>
+                            <canvas id="uploadc" ></canvas>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade in active" id="downloadcOverview">
+                            <h3 class="block-title text-primary"></h3>
+                            <canvas id="downloadc" ></canvas>
+                        </div>
+                    </div>
 					<script src="/assets/js/bootstrap-tabdrop.js"></script>
 					<script type="text/javascript">
 						{$script|unescape:"htmlall"}
+                        $("#uploadcOverview").removeClass("active");
+                        $("#downloadcOverview").removeClass("active");
 					</script>
                 </div>
             </section>

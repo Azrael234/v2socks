@@ -158,6 +158,7 @@ function V2RaySocks_daysInmonth($year='',$month=''){
 }  
 
 function V2RaySocks_calcreset($product,$whmcs,$day,$sqlserver){
+    echo('Calcing '.$product['id'] .' ,days: '. $day . ' , duedate: ' . $product['nextduedate'] . '</br>');
     switch($whmcs['configoption2']){
         case 0:
             break;
