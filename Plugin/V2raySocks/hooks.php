@@ -134,7 +134,7 @@ function V2RaySocks_CalcBandReset($pro,$products,$server){
 }
 
 function V2RaySocks_resetband($id,$sqlserver){
-    $sqlserver->query("UPDATE `user` SET `u` = '0', `d` = '0' where `sid` = ".$id);
+    $sqlserver->query("UPDATE `user` SET `u` = '0', `d` = '0', `updated_at` = '" . time() . "' where `sid` = ".$id);
     $sqlserver->query("DELETE from `user_usage` WHERE `sid` = ".$id);
     echo("ID:".$id." Has been reset</br>");
 }
