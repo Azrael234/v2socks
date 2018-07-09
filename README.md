@@ -52,7 +52,7 @@
 * 需要更多支持，请开issue或者给我发邮件
 
 ## 当前适配的Manager版本以及支持的功能
-* 版本 Gold - 1.1.2
+* 版本 Gold - 1.1.2.2
 * 拉取V2raySocks的数据库
 * 通过数据库信息添加用户
 * 通过数据库信息删除用户
@@ -74,14 +74,18 @@
 * 访问 127.0.0.1:8888/status
 ```
 {
+	"LoadMin1":"0.00",
+	"LoadMin5":"0.00",
+	"M2Version":"Gold - V1.1.2.2",
+	"RX":"7332",
+	"SelfMemoryUsed":"2",
 	"Status":"Success",
-	"M2Version":"Gold - V1.1.2",
-	"RX":"1664",
-	"TX":"2677",
-	"SelfMemoryUsed":"1",
 	"SystemMemoryAll":"996",
-	"SystemMemoryUsed":"708",
-	"V2RayUsers":"2"
+	"SystemMemoryUsed":"684",
+	"TX":"7444",
+	"Timestamp":"1531112247",
+	"Uptime":"93",
+	"V2RayUsers":"7"
 }
 ```
 
