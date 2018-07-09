@@ -1,6 +1,6 @@
 # V2RaySocks
 ## 一个售卖v2Ray的whmcs插件
-* 当前版本 0.8.1
+* 当前版本 0.8.2
 
 ## 支持的功能：
 * 流量图表(已修复自动任务过于频繁导致记录过多的问题(目前记录频率：3小时一次(已经改为跟随WHMCS系统的自动任务进行，不需要手动设置))）
@@ -52,7 +52,7 @@
 * 需要更多支持，请开issue或者给我发邮件
 
 ## 当前适配的Manager版本以及支持的功能
-* 版本 Gold - 1.1.2.2
+* 版本 Gold - 1.1.2.3
 * 拉取V2raySocks的数据库
 * 通过数据库信息添加用户
 * 通过数据库信息删除用户
@@ -76,7 +76,8 @@
 {
 	"LoadMin1":"0.00",
 	"LoadMin5":"0.00",
-	"M2Version":"Gold - V1.1.2.2",
+	"LoadMin15":"0.00",
+	"M2Version":"Gold - V1.1.2.3",
 	"RX":"7332",
 	"SelfMemoryUsed":"2",
 	"Status":"Success",
@@ -91,3 +92,4 @@
 
 ## 捐赠
 ETH钱包 0xaD8ABb15e4B8B58f5FbEE9CAb42096c1d640C234
+链克钱包 0x4cfa7215324f2cc521beeb35c8a85c9afdbcda7e
