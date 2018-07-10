@@ -15,7 +15,7 @@ add_hook('AfterCronJob', 1, function(){
 	}
 });
 
-add_hook('DailyCronJob', 1, function() {
+add_hook('AfterCronJob', 1, function() {
 	try {
 		$query = \WHMCS\Database\Capsule::table('tblproducts')->where('servertype', 'V2raySocks')->get();
 	    $query2 = \WHMCS\Database\Capsule::table('tblhosting')->get();
@@ -157,19 +157,25 @@ function V2RaySocks_daysInmonth($year='',$month=''){
     return $text;  
 }  
 
-function V2RaySocks_calcreset($product,$whmcs,$day,$sqlserver){
-    echo('Calcing '.$product['id'] .' ,days: '. $day . ' , duedate: ' . $product['nextduedate'] . '</br>');
+function V2RaySocks_calcreset($product,$whmcs,$day,$sqlserver){    
+    $sqlq = "SELECT * FROM `user` WHERE sid = " . $product['id'];
+    $ssacc = mysqli_fetch_array($sqlserver->query($sqlq),MYSQLI_ASSOC);
+    echo('Calcing '.$product['id'] .' ,days: '. $day . ' , duedate: ' . $product['nextduedate'] . ' , LastReset: ' . date("Y-m-d", $ssacc['updated_at']) . '</br>');
     switch($whmcs['configoption2']){
         case 0:
             break;
         case 1:
-            if(date("d", strtotime($product['nextduedate'])) == date('d')){
-                V2RaySocks_resetband($product['id'],$sqlserver);
-            }
-            if(date('d') == $day){
-                if(date("d", strtotime($product['nextduedate'])) > $day){
+            if(date("Y-m-d", $ssacc['updated_at']) !== date("Y-m-d", time())){
+                if(date("d", strtotime($product['nextduedate'])) == date('d')){
                     V2RaySocks_resetband($product['id'],$sqlserver);
+                }
+                if(date('d') == $day){
+                    if(date("d", strtotime($product['nextduedate'])) > $day){
+                        V2RaySocks_resetband($product['id'],$sqlserver);
+                    } 
                 } 
+            }else{
+                echo('Skip '.$product['id'] .'</br>');
             }
             break;
         case 2:
