@@ -12,6 +12,7 @@ $_VLANG['error_Service_Disable'] = "Error. Your Service might be down. Please re
 
 $_VLANG['alterId'] = "alterId";
 $_VLANG['uuid'] = "UUID";
+$_VLANG['port'] = "Port";
 $_VLANG['all_port'] = "all Ports";
 $_VLANG['upload'] = "Upload";
 $_VLANG['host'] = "HOST";
@@ -69,7 +70,7 @@ $_VLANG['subscribe_description'] = "enable subscribe";
 $_VLANG['resetbandwidth_description'] = "need reset bandwidth or not";
 $_VLANG['bandwidth_description'] = "MB Leave blank for custom bandwidth";
 $_VLANG['start_port_description'] = "useless when exist in database";
-$_VLANG['routelist_description'] = "name|address|port|type|tls|host|path|network|trafficrate Each row for one route";
+$_VLANG['routelist_description'] = "name|address|port|type|tls|host|path|network|trafficrate|alterID Each row for one route";
 $_VLANG['announcements_description'] = "Write your announcements(new line </br>)";
 //Other
 $_VLANG['User_does_not_exists'] = "Model Error:User does not exists";
