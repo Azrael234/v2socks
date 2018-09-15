@@ -147,18 +147,7 @@ background-color: rgba(0, 0, 0, .3);
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>IOS</td>
-                                        <td>
-                                        <button name="url" class="btn btn-primary btn-xs btyurlios" data-unit=".btyurlios" data-params="https://{$HTTP_HOST}/modules/servers/V2raySocks/subscribe.php?sid={$serviceid}&token={$subscribe_token}" data-done="{V2raySocks_get_lang('copy_success')}">
-                                                <i class="fa fa-code"></i>
-                                                {V2raySocks_get_lang('copy')}
-                                            </button>
-                                    </td>
-                                    <td class="hidden-xs hidden-sm"><button type='button' class='btn btn-xs btn-danger btn-block' onclick='resetToken{$serviceid}()'>{V2raySocks_get_lang('resetToken')}</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Android/Win</td>
+                                    <td>All</td>
                                     <td>
                                         <button name="url" class="btn btn-primary btn-xs btyurlothers" data-unit=".btyurlothers" data-params="https://{$HTTP_HOST}/modules/servers/V2raySocks/osubscribe.php?sid={$serviceid}&token={$subscribe_token}" data-done="{V2raySocks_get_lang('copy_success')}">
                                                 <i class="fa fa-code"></i>
