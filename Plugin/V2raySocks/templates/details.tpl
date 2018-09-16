@@ -142,7 +142,6 @@ background-color: rgba(0, 0, 0, .3);
                                 <tr>
                                     <th>{V2raySocks_get_lang('subscribe')}</th>
                                     <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('action')}</th>
-                                    <th class="hidden-sm hidden-xs">{V2raySocks_get_lang('action')}</th>
                                 </tr>
                             </thead>
                             <tbody>
