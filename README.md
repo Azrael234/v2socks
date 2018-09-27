@@ -10,7 +10,7 @@
 * VMESS URL复制功能
 * VMESS 订阅功能
 * 随机UUID,重置UUID,复制UUID
-* tls,伪装类型,Host,传输协议,路径,流量倍率,额外ID可在服务器设置中设置(不支持则留空)
+* tls,伪装类型,Host,传输协议,路径,流量倍率,额外ID可在服务器设置中设置(不支持则留空(不要删掉|))
 * 线路列表格式修改，请还是注意修正！！！！
 * 添加了API支持(V0.2)
 * 修正了部分情况下API异常
@@ -51,8 +51,12 @@
 * 已更新自动流量更新功能以及自动重置流量功能。请注意刷新hook以保证模块正常运行！
 * 需要更多支持，请开issue或者给我发邮件
 
+## 客户端
+* Android ![V2Loli](https://github.com/Zzm317/V2Loli)
+* Win/Mac/Linux ![V2Milk](https://github.com/Zzm317/V2Milk)
+
 ## 当前适配的Manager版本以及支持的功能
-* 版本 Gold - 1.1.2.3
+* 版本 Gold - 1.1.3.2
 * 拉取V2raySocks的数据库
 * 通过数据库信息添加用户
 * 通过数据库信息删除用户
@@ -69,6 +73,10 @@
 * 获取系统内存状态
 * 进程超时状态检测
 * 远程状态监控
+* Log文件大小限制并再次优化load获取
+* PID文件生成
+* 优化的数据库上传语句
+* 数据库连接数控制
 
 ## Manager远程状态监控返回示例
 * 访问 127.0.0.1:8888/status
@@ -77,7 +85,7 @@
 	"LoadMin1":"0.00",
 	"LoadMin5":"0.00",
 	"LoadMin15":"0.00",
-	"M2Version":"Gold - V1.1.2.3",
+	"M2Version":"Gold - V1.1.3.2",
 	"RX":"7332",
 	"SelfMemoryUsed":"2",
 	"Status":"Success",
@@ -91,5 +99,7 @@
 ```
 
 ## 捐赠
-ETH钱包 0xaD8ABb15e4B8B58f5FbEE9CAb42096c1d640C234  
-链克钱包 0x4cfa7215324f2cc521beeb35c8a85c9afdbcda7e
+* ETH钱包 0xaD8ABb15e4B8B58f5FbEE9CAb42096c1d640C234  
+* 链克钱包 0x4cfa7215324f2cc521beeb35c8a85c9afdbcda7e
+* <a href='https://ko-fi.com/U7U7K54E' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' border='0' alt='Buy Me a Coffee' /></a>
+* 购买Manager ![V2射线管理器开发组](https://t.me/V2rayIsNotGreat)
