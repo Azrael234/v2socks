@@ -52,8 +52,8 @@
 * 需要更多支持，请开issue或者给我发邮件
 
 ## 客户端
-* Android ![V2Loli](https://github.com/Zzm317/V2Loli)
-* Win/Mac/Linux ![V2Milk](https://github.com/Zzm317/V2Milk)
+* Android [V2Loli]:https://github.com/Zzm317/V2Loli
+* Win/Mac/Linux [V2Milk]:https://github.com/Zzm317/V2Milk
 
 ## 当前适配的Manager版本以及支持的功能
 * 版本 Gold - 1.1.3.2
@@ -103,4 +103,4 @@
 * ETH钱包 0xaD8ABb15e4B8B58f5FbEE9CAb42096c1d640C234  
 * 链克钱包 0x4cfa7215324f2cc521beeb35c8a85c9afdbcda7e
 * <a href='https://ko-fi.com/U7U7K54E' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' border='0' alt='Buy Me a Coffee' /></a>
-* 购买Manager ![V2射线管理器开发组](https://t.me/V2rayIsNotGreat)
+* 购买Manager [V2射线管理器开发组]:https://t.me/V2rayIsNotGreat
