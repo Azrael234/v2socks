@@ -16,7 +16,7 @@ if(is_array($input) && !empty($input) && V2RaySocks_API_checkInput($input)){
     if($authentication->verifyFirstFactor()){
         $user = $authentication->getUser();
         $apiresults = array( "result" => "success", "name" => $user->firstname, "email" => $user->email, "package" => array());
-        $query = V2RaySocks_API_queryToArray(\WHMCS\Database\Capsule::table('tblhosting')->where('userid', $user->id)->get());
+        $query = V2RaySocks_API_queryToArray(\WHMCS\Database\Capsule::table('tblhosting')->where('userid', $user->id)->where('domainstatus', 'Active')->get());
         $products = V2RaySocks_API_RebuildProductArray(V2RaySocks_API_queryToArray(\WHMCS\Database\Capsule::table('tblproducts')->where('servertype', 'V2raySocks')->get()));
         $servers = V2RaySocks_API_queryToArray(\WHMCS\Database\Capsule::table('tblservers')->where('type', 'V2raySocks')->get());
         if(!empty($query)){
@@ -35,7 +35,11 @@ if(is_array($input) && !empty($input) && V2RaySocks_API_checkInput($input)){
                     $sql->select_db($products[$queryq['packageid']]['configoption1']);
                     $resultsql = "SELECT * FROM `user` where `sid` = ". $queryq['id'];
                     $result = mysqli_fetch_array($sql->query($resultsql),MYSQLI_ASSOC);
-                    $node = explode("\n",$products[$queryq['packageid']]['configoption4']);
+                    $node = explode("\n", $products[$queryq['packageid']]['configoption4']);
+                    if(empty($node[0])){
+                        $vservers = V2RaySocks_API_queryToArray(\WHMCS\Database\Capsule::table('tblservers')->where('id', $sid)->get());
+                        $node = explode("\n", $vservers[0]['assignedips']);
+                    }
                     $apiresults['package'][] = array(
                         "package" => $products[$queryq['packageid']]['name'],
                         "uuid"    => $result['uuid'],
