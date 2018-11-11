@@ -55,8 +55,28 @@
 * Android [V2Loli](https://github.com/Zzm317/V2Loli)
 * Win/Mac/Linux [V2Milk](https://github.com/Zzm317/V2Milk)
 
-## 当前适配的Manager版本以及支持的功能
-* 版本 Gold - 1.1.3.2
+## 后端 - 普通乞丐版Manager
+### 下载Manager [V2Manager](https://github.com/Zzm317/V2Manager/releases)
+支持的功能和特性：
+* 拉取V2raySocks的数据库
+* 通过数据库信息添加用户
+* 通过数据库信息删除用户
+* 上传流量至数据库
+* 自动关闭超出流量的用户
+* UUID重置自动更新
+* 支持命令行参数启动
+* 检测V2Ray进程并自动重启V2Ray
+* 优化的数据库上传语句
+* 数据库连接数控制
+
+## 捐赠
+* ETH钱包 0xaD8ABb15e4B8B58f5FbEE9CAb42096c1d640C234  
+* 链克钱包 0x4cfa7215324f2cc521beeb35c8a85c9afdbcda7e
+* <a href='https://ko-fi.com/U7U7K54E' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' border='0' alt='Buy Me a Coffee' /></a>
+* 购买Manager [V2射线管理器开发组](https://t.me/V2rayIsNotGreat)
+
+## 当前适配的付费版完整Manager版本以及支持的功能和特性
+* 版本 Gold - 1.1.3.3
 * 拉取V2raySocks的数据库
 * 通过数据库信息添加用户
 * 通过数据库信息删除用户
@@ -79,14 +99,14 @@
 * 优化的数据库上传语句
 * 数据库连接数控制
 
-## Manager远程状态监控返回示例
+## 付费完整版Manager远程状态监控返回示例
 * 访问 127.0.0.1:8888/status
 ```
 {
 	"LoadMin1":"0.00",
 	"LoadMin5":"0.00",
 	"LoadMin15":"0.00",
-	"M2Version":"Gold - V1.1.3.2",
+	"M2Version":"Gold - V1.1.3.3",
 	"RX":"7332",
 	"SelfMemoryUsed":"2",
 	"Status":"Success",
@@ -98,9 +118,3 @@
 	"V2RayUsers":"7"
 }
 ```
-
-## 捐赠
-* ETH钱包 0xaD8ABb15e4B8B58f5FbEE9CAb42096c1d640C234  
-* 链克钱包 0x4cfa7215324f2cc521beeb35c8a85c9afdbcda7e
-* <a href='https://ko-fi.com/U7U7K54E' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' border='0' alt='Buy Me a Coffee' /></a>
-* 购买Manager [V2射线管理器开发组](https://t.me/V2rayIsNotGreat)
