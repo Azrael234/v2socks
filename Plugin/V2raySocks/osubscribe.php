@@ -24,6 +24,11 @@ if(isset($_GET['sid']) && isset($_GET['token'])){
 	$usage->execute();
 	$usage = $usage->fetch();
 	$servers = $package->configoption4;
+    if($servers == ""){
+        $servers = \WHMCS\Database\Capsule::table('tblservers')->where('id', $service->server)->get();
+        $servers = V2raySocks_OS_QueryToArray($servers);
+        $servers = $servers[0]['assignedips'];
+    }
 	$noder = explode("\n",$servers);
 	$results = "";
 	foreach($noder as $nodee){
@@ -35,6 +40,18 @@ if(isset($_GET['sid']) && isset($_GET['token'])){
 	die('Invaild');
 }
 
+function V2raySocks_OS_QueryToArray($query){
+    $products = array();
+    foreach ($query as $product) {
+        $producta = array();
+        foreach($product as $k => $produc){
+            $producta[$k] = $produc;
+        }
+        $products[] = $producta;
+    }
+    return $products;
+}
+
 function make_vmess($nodee,$uuid){
     $atr1 = array(
         "add" => $nodee[1],
@@ -43,7 +60,7 @@ function make_vmess($nodee,$uuid){
         "net" => $nodee[7],
         "path"=> $nodee[6],
         "port"=> $nodee[2],
-        "ps"  => $nodee[0],
+        "ps"  => $nodee[0] . "(" . $nodee[8] . ")",
         "tls" => $nodee[4],
         "v"   => 2
     );
