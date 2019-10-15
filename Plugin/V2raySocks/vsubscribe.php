@@ -32,7 +32,8 @@ if(isset($_GET['sid']) && isset($_GET['token'])){
 	$noder = explode("\n",$servers);
 	$results = "";
     //if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mozilla') !== false) {
-    if (strpos($_SERVER['HTTP_USER_AGENT'], 'Shadowrocket') !== false) {
+    //if (strpos($_SERVER['HTTP_USER_AGENT'], 'Shadowrocket') !== false) {
+	 if (strpos($_SERVER['HTTP_USER_AGENT'], 'Shadowrocket') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Mozilla') !== false) {
         $tmp =  trim("到期时间:" . $service->nextduedate . "/剩余流量:" . round(Convert($usage["transfer_enable"] - $usage["u"] - $usage["d"], 'bytes', 'gb')) . "G");
         $results .= 'STATUS=' . $tmp . PHP_EOL . 'REMARKS=' . $package->name . PHP_EOL;
     }
