@@ -70,9 +70,7 @@
 * 数据库连接数控制
 
 ## 捐赠
-* ETH钱包 0xaD8ABb15e4B8B58f5FbEE9CAb42096c1d640C234  
-* 链克钱包 0x4cfa7215324f2cc521beeb35c8a85c9afdbcda7e
-* <a href='https://ko-fi.com/U7U7K54E' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' border='0' alt='Buy Me a Coffee' /></a>
+* ETH钱包 0x88b94aa8ea523939220b84752a1e5879e25a4b43 
 * 购买Manager [V2射线管理器开发组](https://t.me/V2rayIsNotGreat)
 
 ## 当前适配的付费版完整Manager版本以及支持的功能和特性
